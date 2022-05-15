@@ -13,7 +13,7 @@ I was bored and burnt out
 -   TicTacToe board<br>
     ![image](https://user-images.githubusercontent.com/26828488/168480784-f1185514-c213-4f92-9168-3c8915106caf.png) ![image](https://user-images.githubusercontent.com/26828488/168480791-8682fe23-d4f3-4ba4-a058-52a68b39ca5a.png)
 -   Choose which player goes first<br>
-    ![Choose player](https://i.ibb.co/YWxz6YS/Untitled.png)
+    ![image](https://user-images.githubusercontent.com/26828488/168489790-1d15a886-78f9-480c-b0f2-fe26c4e89884.png)
 -   Minimax Algorithm
 
 ## Usage
