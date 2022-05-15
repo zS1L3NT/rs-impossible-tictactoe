@@ -118,8 +118,7 @@ impl Game {
             for (index, tile) in self.tiles.iter().enumerate() {
                 if let Tile::Empty = tile {
                     let mut game = self.clone();
-                    let tile = game.get_mut(index as i32).unwrap();
-                    *tile = Tile::X;
+                    *game.get_mut(index as i32).unwrap() = Tile::X;
 
                     best_score = max(best_score, game.minmax(false));
                 }
@@ -131,8 +130,7 @@ impl Game {
             for (index, tile) in self.tiles.iter().enumerate() {
                 if let Tile::Empty = tile {
                     let mut game = self.clone();
-                    let tile = game.get_mut(index as i32).unwrap();
-                    *tile = Tile::O;
+                    *game.get_mut(index as i32).unwrap() = Tile::O;
 
                     best_score = min(best_score, game.minmax(true));
                 }
@@ -149,8 +147,7 @@ impl Game {
         for (index, tile) in self.tiles.iter().enumerate() {
             if let Tile::Empty = tile {
                 let mut game = self.clone();
-                let tile = game.get_mut(index as i32).unwrap();
-                *tile = Tile::X;
+                *game.get_mut(index as i32).unwrap() = Tile::X;
 
                 let score = game.minmax(false);
                 if score > best_score {
