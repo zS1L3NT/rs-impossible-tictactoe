@@ -10,9 +10,9 @@ I was bored and burnt out
 
 ## Features
 
--   TicTacToe board
+-   TicTacToe board<br>
     ![image](https://user-images.githubusercontent.com/26828488/168480784-f1185514-c213-4f92-9168-3c8915106caf.png) ![image](https://user-images.githubusercontent.com/26828488/168480791-8682fe23-d4f3-4ba4-a058-52a68b39ca5a.png)
--   Choose which player goes first
+-   Choose which player goes first<br>
     ![Choose player](https://i.ibb.co/YWxz6YS/Untitled.png)
 -   Minimax Algorithm
 
