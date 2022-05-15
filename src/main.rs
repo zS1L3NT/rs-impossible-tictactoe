@@ -26,12 +26,14 @@ impl Tile {
 
 #[derive(Clone)]
 struct Game {
+    first: String,
     tiles: Vec<Tile>,
 }
 
 impl Game {
     fn new() -> Self {
         Self {
+            first: String::from("u"),
             tiles: vec![Tile::Empty; 9],
         }
     }
@@ -105,19 +107,13 @@ impl Game {
         return 0;
     }
 
-    fn minmax(&self) -> i32 {
+    fn minmax(&self, is_computer: bool) -> i32 {
         let score = self.evaluate();
         if score != 0 || self.tiles.iter().all(|tile| *tile != Tile::Empty) {
             return score;
         }
 
-        let empty_tile_count = self
-            .tiles
-            .iter()
-            .filter(|tile| **tile == Tile::Empty)
-            .count();
-
-        if empty_tile_count % 2 == 1 {
+        if is_computer {
             let mut best_score = -1;
             for (index, tile) in self.tiles.iter().enumerate() {
                 if let Tile::Empty = tile {
@@ -125,7 +121,7 @@ impl Game {
                     let tile = game.get_mut(index as i32).unwrap();
                     *tile = Tile::X;
 
-                    best_score = max(best_score, game.minmax());
+                    best_score = max(best_score, game.minmax(false));
                 }
             }
 
@@ -138,7 +134,7 @@ impl Game {
                     let tile = game.get_mut(index as i32).unwrap();
                     *tile = Tile::O;
 
-                    best_score = min(best_score, game.minmax());
+                    best_score = min(best_score, game.minmax(true));
                 }
             }
 
@@ -156,7 +152,7 @@ impl Game {
                 let tile = game.get_mut(index as i32).unwrap();
                 *tile = Tile::X;
 
-                let score = game.minmax();
+                let score = game.minmax(false);
                 if score > best_score {
                     best_score = score;
                     best_move_index = index as i32;
@@ -173,7 +169,6 @@ fn main() {
 
     loop {
         print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
-        println!("O always gets the first move, then X");
         print!("Who starts first, user or computer? (u/c): ");
         stdout().flush().expect("Failed to flush input");
         let mut input = String::new();
@@ -184,9 +179,9 @@ fn main() {
                 game.print();
                 println!("Computer is thinking...");
 
-                // Since first move will always be the same, don't waste time recomputing
                 let best_move_index = game.get_best_move_index();
                 *game.get_mut(best_move_index).unwrap() = Tile::X;
+                game.first = String::from("c");
 
                 break;
             }
